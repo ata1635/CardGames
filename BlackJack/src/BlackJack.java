@@ -113,15 +113,18 @@ public class BlackJack {
                     g.setFont(new Font("Arial", Font.PLAIN, 30));
                     g.setColor(Color.white);
                     g.drawString(message, 220, 250);
+
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
+        
     };
     JPanel buttonPanel = new JPanel();
     JButton hitButton = new JButton("Hit");
     JButton stayButton = new JButton("Stay");
+    JButton newGameButton = new JButton("New");
 
 
     BlackJack() {
@@ -141,6 +144,9 @@ public class BlackJack {
         buttonPanel.add(hitButton);
         stayButton.setFocusable(false);
         buttonPanel.add(stayButton);
+        newGameButton.setFocusable(false);
+        newGameButton.setEnabled(false);
+        buttonPanel.add(newGameButton);
         frame.add(buttonPanel, BorderLayout.SOUTH);
 
         hitButton.addActionListener(new ActionListener() {
@@ -160,6 +166,7 @@ public class BlackJack {
             public void actionPerformed(ActionEvent e) {
                 hitButton.setEnabled(false);
                 stayButton.setEnabled(false);
+                newGameButton.setEnabled(true);
 
                 while (dealerSum < 17) {
                     Card card = deck.remove(deck.size() - 1);
@@ -167,6 +174,20 @@ public class BlackJack {
                     dealerAceCount += card.isAce()? 1 : 0;
                     dealerHand.add(card);
                 }
+                gamePanel.repaint();
+            }
+        });
+
+        newGameButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                playerHand.clear();
+                dealerHand.clear();
+                playerSum = 0;
+                dealerSum = 0;
+                hitButton.setEnabled(true);
+                stayButton.setEnabled(true);
+                newGameButton.setEnabled(false);
+                startGame();
                 gamePanel.repaint();
             }
         });
