@@ -32,6 +32,10 @@ public class BlackJack {
         public boolean isAce() {
             return value == "A";
         }
+
+        public String getImagePath() {
+            return "./cards/" + toString() + ".png";
+        }
     }
 
     ArrayList<Card> deck;
@@ -48,8 +52,65 @@ public class BlackJack {
     int playerSum;
     int playerAceCount;
 
+    //window
+    int boardWidth = 600;
+    int boardHeight = boardWidth;
+
+    int cardWidth = 110; //ration should be 1/1.4
+    int cardHeight = 154;
+
+    JFrame frame = new JFrame("Black Jack"); //window
+    JPanel gamePanel = new JPanel() {
+        @Override
+        public void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            try {
+                //draw hidden card
+                Image hiddenCardImg = new ImageIcon(getClass().getResource("./cards/BACK.png")).getImage();
+                g.drawImage(hiddenCardImg, 20, 20, cardWidth, cardHeight, null);
+
+                //draw dealers hand
+                for (int i = 0; i < dealerHand.size(); i++) {
+                    Card card = dealerHand.get(i);
+                    Image cardImg = new ImageIcon(getClass().getResource(card.getImagePath())).getImage();
+                    g.drawImage(cardImg, cardWidth + 25 + (cardWidth + 5) * i, 20, cardWidth, cardHeight, null);
+                }
+
+                //draw players hand
+                for (int i = 0; i < playerHand.size(); i++) {
+                    Card card = playerHand.get(i);
+                    Image cardImg = new ImageIcon(getClass().getResource(card.getImagePath())).getImage();
+                    g.drawImage(cardImg, 20 + (cardWidth + 5) * i, 320, cardWidth, cardHeight, null);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    };
+    JPanel buttonPanel = new JPanel();
+    JButton hitButton = new JButton("Hit");
+    JButton stayButton = new JButton("Stay");
+
+
     BlackJack() {
         startGame();
+
+        frame.setVisible(true);
+        frame.setSize(boardWidth, boardHeight);
+        frame.setLocationRelativeTo(null);
+        frame.setResizable(false);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        gamePanel.setLayout(new BorderLayout());
+        gamePanel.setBackground(new Color(53, 101, 77));
+        frame.add(gamePanel);
+
+        hitButton.setFocusable(false);
+        buttonPanel.add(hitButton);
+        stayButton.setFocusable(false);
+        buttonPanel.add(stayButton);
+        frame.add(buttonPanel, BorderLayout.SOUTH);
+
     }
 
     public void startGame() {
@@ -83,7 +144,7 @@ public class BlackJack {
         playerAceCount = 0;
 
         for (int i = 0; i < 2; i++) {
-            card = deck.remove(deck.size() -1);
+            card = deck.remove(deck.size() - 1);
             playerSum += card.getValue();
             playerAceCount += card.isAce() ? 1 : 0;
             playerHand.add(card);
