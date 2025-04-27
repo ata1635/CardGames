@@ -43,6 +43,11 @@ public class BlackJack {
     int dealerSum;
     int dealerAceCount; //devalue the Ace from 11 to 1
 
+    //player
+    ArrayList<Card> playerHand;
+    int playerSum;
+    int playerAceCount;
+
     BlackJack() {
         startGame();
     }
@@ -57,7 +62,7 @@ public class BlackJack {
         dealerSum = 0;
         dealerAceCount = 0;
 
-        hiddenCard = deck.remove(deck.size()-1); //remoce card at last index
+        hiddenCard = deck.remove(deck.size()-1); //remove card at last index
         dealerSum += hiddenCard.getValue();
         dealerAceCount += hiddenCard.isAce() ? 1 : 0;
 
@@ -71,6 +76,20 @@ public class BlackJack {
         System.out.println(dealerHand);
         System.out.println(dealerSum);
         System.out.println(dealerAceCount);
+
+        //player
+        playerHand = new ArrayList<Card>();
+        playerSum = 0;
+        playerAceCount = 0;
+
+        for (int i = 0; i < 2; i++) {
+            card = deck.remove(deck.size() -1);
+            playerSum += card.getValue();
+            playerAceCount += card.isAce() ? 1 : 0;
+            playerHand.add(card);
+        }
+
+        System.out.println("PLAYER: " + playerHand + "\n" + playerSum + "\n" + playerAceCount);
 
     }
 
