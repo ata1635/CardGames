@@ -7,7 +7,7 @@ group = 'main'
 version = '1.0-SNAPSHOT'
 
 application {
-    mainClassName = 'main.Main'
+    mainClassName = 'app.Main'
 }
 
 repositories {
@@ -17,6 +17,7 @@ repositories {
 dependencies {
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
+    implementation 'org.assertj:assertj-core:4.0.0-M1'
 }
 
 test {
