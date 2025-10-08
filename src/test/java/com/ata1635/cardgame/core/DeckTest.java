@@ -21,7 +21,6 @@ public class DeckTest {
     @BeforeEach
     void setUp() {
         deck = new Deck();
-        deck.buildDeck();
     }
 
     @Nested
