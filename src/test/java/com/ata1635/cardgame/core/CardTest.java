@@ -1,5 +1,6 @@
-package com.ata1635.scoundrel.model;
+package com.ata1635.cardgame.core;
 
+import com.ata1635.cardgame.core.model.Card;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;

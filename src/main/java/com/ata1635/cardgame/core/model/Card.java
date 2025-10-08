@@ -1,10 +1,10 @@
-package com.ata1635.scoundrel.model;
+package com.ata1635.cardgame.core.model;
 
 public class Card {
-    String value;
-    String type;
+    private String value;
+    private String type;
 
-    Card(String value, String type) {
+    public Card(String value, String type) {
         this.value = value;
         this.type = type;
     }

@@ -1,4 +1,4 @@
-package com.ata1635.scoundrel;
+package com.ata1635.cardgame;
 
 public class Main {
     public static void main(String[] args) {
