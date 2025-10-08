@@ -4,13 +4,19 @@ import com.ata1635.cardgame.core.model.Card;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Deck {
 
     private List<Card> deck;
+    private final Random random = new Random();
 
     public Deck() {
         buildDeck();
+    }
+
+    public List<Card> getDeck() {
+        return new ArrayList<Card>(deck);
     }
 
     public void buildDeck() {
@@ -26,8 +32,14 @@ public class Deck {
         }
     }
 
-    public List<Card> getDeck() {
-        return new ArrayList<Card>(deck);
+    public void shuffleDeck() {
+        for (int i = 0; i < deck.size(); i++) {
+            int j = random.nextInt(deck.size()); //gives a random Integer 1-52
+            Card currentCard = deck.get(i);
+            Card randomCard = deck.get(j);
+            deck.set(i, randomCard); //switches position with j
+            deck.set(j, currentCard); //switches position with i
+        }
     }
 
 }
