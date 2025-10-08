@@ -17,13 +17,14 @@ public class DeckTest {
 
     private Deck deck;
 
+    @BeforeEach
+    void setUp() {
+        deck = new Deck();
+        deck.buildDeck();
+    }
+    
     @Nested
     class DeckBuilderTest {
-        @BeforeEach
-        void setUp() {
-            deck = new Deck();
-            deck.buildDeck();
-        }
 
         @Test
         @DisplayName("Deck has 52 cards")
@@ -59,7 +60,6 @@ public class DeckTest {
         @Test
         @DisplayName("Shuffled deck has 52 cards")
         void testShuffledDeckSize() {
-            Deck deck = new Deck();
             deck.shuffleDeck();
             assertThat(deck.getDeck()).hasSize(52);
         }
