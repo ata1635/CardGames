@@ -7,6 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -22,7 +23,7 @@ public class DeckTest {
         deck = new Deck();
         deck.buildDeck();
     }
-    
+
     @Nested
     class DeckBuilderTest {
 
@@ -62,6 +63,15 @@ public class DeckTest {
         void testShuffledDeckSize() {
             deck.shuffleDeck();
             assertThat(deck.getDeck()).hasSize(52);
+        }
+
+        @Test
+        @DisplayName("Shuffled deck contains all original cards")
+        void testShuffledDeckContainsAllCards() {
+            List<Card> deck2 = new ArrayList<>(deck.getDeck());
+            deck.shuffleDeck();
+            List<Card> shuffled = deck.getDeck();
+            assertThat(shuffled).containsExactlyInAnyOrderElementsOf(deck2);
         }
 
     }
