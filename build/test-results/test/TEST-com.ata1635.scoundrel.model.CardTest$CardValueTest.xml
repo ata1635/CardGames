@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.ata1635.scoundrel.model.CardTest$CardValueTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2025-10-08T06:43:53" hostname="ata-ThinkPad-E495" time="0.008">
+  <properties/>
+  <testcase name="Value is 11 when card is Ace" classname="com.ata1635.scoundrel.model.CardTest$CardValueTest" time="0.004"/>
+  <testcase name="Value is 10 when card is Jack, Queen or King" classname="com.ata1635.scoundrel.model.CardTest$CardValueTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
