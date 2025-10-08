@@ -1,8 +1,9 @@
 package com.ata1635.cardgame;
 
-public class Main {
-    public static void main(String[] args) {
+import com.ata1635.cardgame.core.games.Blackjack;
 
-        System.out.println("Hello, World!");
+public class Main {
+    public static void main(String[] args) throws Exception {
+        Blackjack blackJack = new Blackjack();
     }
 }
