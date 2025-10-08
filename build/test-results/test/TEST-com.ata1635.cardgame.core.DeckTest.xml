@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.ata1635.cardgame.core.DeckTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-10-08T09:11:50" hostname="ata-ThinkPad-E495" time="0.078">
+<testsuite name="com.ata1635.cardgame.core.DeckTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-10-08T09:25:48" hostname="ata-ThinkPad-E495" time="0.086">
   <properties/>
-  <testcase name="Deck contains no dublicate cards" classname="com.ata1635.cardgame.core.DeckTest" time="0.078"/>
+  <testcase name="Deck contains all value-type combinations exactly once" classname="com.ata1635.cardgame.core.DeckTest" time="0.086"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
