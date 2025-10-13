@@ -20,8 +20,8 @@ public class Blackjack {
     private int playerAceCount;
 
     public Blackjack() {
-        this.deck = new Deck();
-        this.deck.shuffleDeck();
+        deck = new Deck();
+        deck.shuffleDeck();
         startGame();
     }
 
