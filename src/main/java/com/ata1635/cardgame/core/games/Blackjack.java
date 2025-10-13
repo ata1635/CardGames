@@ -64,6 +64,22 @@ public class Blackjack {
         System.out.println("PLAYER:\n" + playerHand + "\n" + playerSum + "\n" + playerAceCount);
     }
 
+    public Card playerHit() {
+        Card card = deck.drawCard();
+        playerHand.add(card);
+        playerSum += card.getValue();
+        playerAceCount += card.isAce() ? 1 : 0;
+        return card;
+    }
+
+    public Card dealerHit() {
+        Card card = deck.drawCard();
+        dealerHand.add(card);
+        dealerSum += card.getValue();
+        dealerAceCount += card.isAce() ? 1 : 0;
+        return card;
+    }
+
     //getters for testing
     public List<Card> getDealerHand() { return dealerHand; }
     public List<Card> getPlayerHand() { return playerHand; }
