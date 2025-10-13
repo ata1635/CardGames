@@ -42,4 +42,11 @@ public class Deck {
         Collections.shuffle(deck);
     }
 
+    public Card drawCard() {
+        if (deck.isEmpty()) {
+            throw new IllegalStateException("Deck is empty");
+        }
+        return deck.remove(deck.size() - 1);
+    }
+
 }
