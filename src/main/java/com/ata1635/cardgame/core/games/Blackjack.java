@@ -65,11 +65,10 @@ public class Blackjack {
         playerHand.add(card);
         playerSum += card.getValue();
         playerAceCount += card.isAce() ? 1 : 0;
-        adjustForAces();
+        adjustPlayerAce();
         printHands();
         return card;
     }
-
 
     public Card dealerHit() {
         Card card = deck.drawCard();
@@ -79,10 +78,17 @@ public class Blackjack {
         return card;
     }
 
-    private void adjustForAces() {
+    private void adjustPlayerAce() {
         while (playerSum > 21 && playerAceCount > 0) {
             playerSum -= 10;
             playerAceCount--;
+        }
+    }
+
+    private void adjustDealerAce() {
+        while (dealerSum > 21 && dealerAceCount > 0) {
+            dealerSum -= 10;
+            dealerAceCount--;
         }
     }
 
