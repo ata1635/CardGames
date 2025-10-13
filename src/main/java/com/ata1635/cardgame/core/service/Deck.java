@@ -20,6 +20,11 @@ public class Deck {
         return new ArrayList<Card>(deck);
     }
 
+    //for testing manually built decks
+    public void setDeck(List<Card> cards) {
+        this.deck = new ArrayList<>(cards);
+    }
+
     public void buildDeck() {
         String[] values = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
         String[] types = {"C", "D", "H", "S"};
