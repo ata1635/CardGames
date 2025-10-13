@@ -8,15 +8,15 @@ import java.util.List;
 
 public class Blackjack {
 
-    private Deck deck;
+    private final Deck deck;
     private Card hiddenCard;
 
     private ArrayList<Card> dealerHand;
-    private int dealerSum;
-    private int dealerAceCount; //devalue the Ace from 11 to 1
-
     private ArrayList<Card> playerHand;
+
+    private int dealerSum;
     private int playerSum;
+    private int dealerAceCount; //devalue the Ace from 11 to 1
     private int playerAceCount;
 
     public Blackjack() {
@@ -32,18 +32,16 @@ public class Blackjack {
     }
 
     public void startGame() {
-        ArrayList<Card> deck = new ArrayList<>(this.deck.getDeck());
-
         //dealer
         dealerHand = new ArrayList<Card>();
         dealerSum = 0;
         dealerAceCount = 0;
 
-        hiddenCard = deck.remove(deck.size() - 1);
+        hiddenCard = deck.drawCard();
         dealerSum += hiddenCard.getValue();
         dealerAceCount += hiddenCard.isAce() ? 1 : 0;
 
-        Card card = deck.remove(deck.size() - 1); //dealer only draws one card
+        Card card = deck.drawCard(); //dealer only draws one card
         dealerSum += card.getValue();
         dealerAceCount += card.isAce() ? 1 : 0;
         dealerHand.add(card);
@@ -57,7 +55,7 @@ public class Blackjack {
         playerAceCount = 0;
 
         for (int i = 0; i < 2; i++) { //player draws 2 cards at start
-            card = deck.remove(deck.size() - 1);
+            card = deck.drawCard();
             playerSum += card.getValue();
             playerAceCount += card.isAce() ? 1 : 0;
             playerHand.add(card);
