@@ -75,6 +75,7 @@ public class Blackjack {
         dealerHand.add(card);
         dealerSum += card.getValue();
         dealerAceCount += card.isAce() ? 1 : 0;
+        printHands();
         return card;
     }
 
@@ -94,6 +95,16 @@ public class Blackjack {
 
     public boolean isPlayerBust() {
         return playerSum > 21;
+    }
+
+    public void dealerFinalHits() {
+        while (dealerSum < 17) {
+            Card card = deck.drawCard();
+            dealerSum += card.getValue();
+            dealerAceCount += card.isAce() ? 1 : 0;
+            dealerHand.add(card);
+            printHands();
+        }
     }
 
     public void printHands() {
