@@ -79,6 +79,13 @@ public class BlackjackUI extends JFrame {
             }
             gamePanel.repaint();
         });
+
+        stayButton.addActionListener(e -> {
+            hitButton.setEnabled(false);
+            stayButton.setEnabled(false);
+            blackjack.dealerFinalHits();
+            gamePanel.repaint();
+        });
     }
 }
 
