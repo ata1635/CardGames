@@ -17,11 +17,11 @@ public class BlackJackTest {
     void setUp() {
         fixedDeck = new Deck();
         fixedDeck.setDeck(new ArrayList<>(List.of(
-                new Card("A", "S"),   // 1st (top)
-                new Card("10", "H"),
+                new Card("10", "H"), // first (bottom of deck)
+                new Card("A", "S"),
                 new Card("5", "D"),
                 new Card("K", "C"),
-                new Card("3", "S")    // last (bottom)
+                new Card("3", "S")    // last (top of deck)
         )));
     }
 
@@ -32,5 +32,19 @@ public class BlackJackTest {
         assertThat(blackjack.getDealerHand()).hasSize(1);
         assertThat(blackjack.getHiddenCard()).isNotNull();
         assertThat(blackjack.getPlayerHand()).hasSize(2);
+    }
+
+    @Test
+    @DisplayName("Dealer has no Ace in hand")
+    void dealerNoAce() {
+        Blackjack blackjack = new Blackjack(fixedDeck);
+        assertThat(blackjack.getDealerAceCount()).isEqualTo(0);
+    }
+
+    @Test
+    @DisplayName("Player has an Ace in hand")
+    void playerHasAce() {
+        Blackjack blackjack = new Blackjack(fixedDeck);
+        assertThat(blackjack.getPlayerAceCount()).isEqualTo(1);
     }
 }
