@@ -46,9 +46,6 @@ public class Blackjack {
         dealerAceCount += card.isAce() ? 1 : 0;
         dealerHand.add(card);
 
-        System.out.println("DEALER:\n" + hiddenCard + "\n"
-                + dealerHand + "\n" + dealerSum + "\n" + dealerAceCount + "\n");
-
         //player
         playerHand = new ArrayList<Card>();
         playerSum = 0;
@@ -60,8 +57,7 @@ public class Blackjack {
             playerAceCount += card.isAce() ? 1 : 0;
             playerHand.add(card);
         }
-
-        System.out.println("PLAYER:\n" + playerHand + "\n" + playerSum + "\n" + playerAceCount);
+        printHands();
     }
 
     public Card playerHit() {
@@ -69,8 +65,11 @@ public class Blackjack {
         playerHand.add(card);
         playerSum += card.getValue();
         playerAceCount += card.isAce() ? 1 : 0;
+        adjustForAces();
+        printHands();
         return card;
     }
+
 
     public Card dealerHit() {
         Card card = deck.drawCard();
@@ -78,6 +77,24 @@ public class Blackjack {
         dealerSum += card.getValue();
         dealerAceCount += card.isAce() ? 1 : 0;
         return card;
+    }
+
+    private void adjustForAces() {
+        while (playerSum > 21 && playerAceCount > 0) {
+            playerSum -= 10;
+            playerAceCount--;
+        }
+    }
+
+    public boolean isPlayerBust() {
+        return playerSum > 21;
+    }
+
+    public void printHands() {
+        System.out.println("DEALER:\n" + hiddenCard + "\n"
+                + dealerHand + "\n" + dealerSum + "\n" + dealerAceCount + "\n");
+        System.out.println("PLAYER:\n" + playerHand + "\n" + playerSum + "\n" + playerAceCount);
+        System.out.println("\n ---------- \n");
     }
 
     //getters for testing
