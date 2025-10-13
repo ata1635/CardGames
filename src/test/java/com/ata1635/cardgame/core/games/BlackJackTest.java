@@ -4,6 +4,7 @@ import com.ata1635.cardgame.core.model.Card;
 import com.ata1635.cardgame.core.service.Deck;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import java.util.ArrayList;
@@ -54,12 +55,30 @@ public class BlackJackTest {
         assertThat(blackjack.getPlayerAceCount()).isEqualTo(1);
     }
 
-    @Test
-    @DisplayName("Card sum of Dealer and Player are correct")
-    void cardSum() {
-        Blackjack blackjack = new Blackjack(fixedDeck);
-        assertThat(blackjack.getDealerSum()).isEqualTo(13);
-        assertThat(blackjack.getPlayerSum()).isEqualTo(16);
-    }
+    @Nested
+    class CardValuesTest {
+        @Test
+        @DisplayName("Card sum value of Dealer and Player are correct")
+        void cardSum() {
+            Blackjack blackjack = new Blackjack(fixedDeck);
+            assertThat(blackjack.getDealerSum()).isEqualTo(13);
+            assertThat(blackjack.getPlayerSum()).isEqualTo(16);
+        }
 
+        @Test
+        @DisplayName("Card sum value of Player is correct after hitting once")
+        void correctPlayerSum() {
+            Blackjack blackjack = new Blackjack(fixedDeck);
+            blackjack.playerHit();
+            assertThat(blackjack.getPlayerSum()).isEqualTo(26);
+        }
+
+        @Test
+        @DisplayName("Card sum value of Dealer is correct after hitting once")
+        void correctDealerSum() {
+            Blackjack blackjack = new Blackjack(fixedDeck);
+            blackjack.dealerHit();
+            assertThat(blackjack.getDealerSum()).isEqualTo(23);
+        }
+    }
 }
