@@ -30,8 +30,14 @@ public class BlackJackTest {
     void correctNumberOfCardsDealt() {
         Blackjack blackjack = new Blackjack(fixedDeck);
         assertThat(blackjack.getDealerHand()).hasSize(1);
-        assertThat(blackjack.getHiddenCard()).isNotNull();
         assertThat(blackjack.getPlayerHand()).hasSize(2);
+    }
+
+    @Test
+    @DisplayName("Hidden card is dealt do dealer")
+    void hiddenCard() {
+        Blackjack blackjack = new Blackjack(fixedDeck);
+        assertThat(blackjack.getHiddenCard()).isNotNull();
     }
 
     @Test
@@ -49,9 +55,11 @@ public class BlackJackTest {
     }
 
     @Test
-    @DisplayName("Hidden card is dealt do dealer")
-    void hiddenCard() {
+    @DisplayName("Card sum of Dealer and Player are correct")
+    void cardSum() {
         Blackjack blackjack = new Blackjack(fixedDeck);
-        assertThat(blackjack.getHiddenCard()).isNotNull();
+        assertThat(blackjack.getDealerSum()).isEqualTo(13);
+        assertThat(blackjack.getPlayerSum()).isEqualTo(16);
     }
+
 }

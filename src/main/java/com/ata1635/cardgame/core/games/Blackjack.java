@@ -67,12 +67,12 @@ public class Blackjack {
     }
 
     //getters for testing
-    public Card getHiddenCard() { return hiddenCard; }
     public List<Card> getDealerHand() { return dealerHand; }
     public List<Card> getPlayerHand() { return playerHand; }
-    public int getDealerSum() { return dealerSum; }
-    public int getPlayerSum() { return playerSum; }
+    public Card getHiddenCard() { return hiddenCard; }
     public int getDealerAceCount() { return dealerAceCount; }
     public int getPlayerAceCount() { return playerAceCount; }
+    public int getDealerSum() { return dealerSum; }
+    public int getPlayerSum() { return playerSum; }
 
 }
