@@ -4,6 +4,8 @@ import com.ata1635.cardgame.core.model.Card;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class BlackjackUI extends JFrame {
 
@@ -58,21 +60,22 @@ public class BlackjackUI extends JFrame {
         this.add(gamePanel);
 
         JPanel buttonPanel = new JPanel();
-        this.add(buttonPanel, BorderLayout.SOUTH);
-
         gamePanel.setLayout(new BorderLayout());
         gamePanel.setBackground(TABLE_GREEN);
-
         buttonPanel.setBackground(TABLE_GREEN);
+
         JButton hitButton = new JButton("Hit");
         JButton stayButton = new JButton("Stay");
         buttonPanel.add(hitButton);
         buttonPanel.add(stayButton);
-
         hitButton.setFocusable(false);
-
         stayButton.setFocusable(false);
+        this.add(buttonPanel, BorderLayout.SOUTH);
 
+        hitButton.addActionListener(e -> {
+            blackjack.playerHit();
+            gamePanel.repaint();
+        });
     }
 }
 
