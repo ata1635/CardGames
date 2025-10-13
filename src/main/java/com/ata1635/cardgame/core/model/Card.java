@@ -15,7 +15,7 @@ public class Card {
 
     public int getValue() {
         if ("AJQK".contains(value)) { //Ace Jack Queen King
-            if (value == "A") {
+            if ("A".equals(value)) {
                 return 11;
             }
             return 10;
@@ -24,7 +24,7 @@ public class Card {
     }
 
     public boolean isAce() {
-        return value == "A";
+        return "A".equals(value);
     }
 
     public String getImagePath() {
