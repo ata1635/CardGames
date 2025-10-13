@@ -13,7 +13,6 @@ public class BlackjackUI extends JFrame {
 
     private static final int CARD_HEIGHT = 154; //ration 1/1.4
     private static final int CARD_WIDTH = 110;
-
     private static final Color TABLE_GREEN = new Color(53, 101, 77);
 
 
@@ -74,6 +73,10 @@ public class BlackjackUI extends JFrame {
 
         hitButton.addActionListener(e -> {
             blackjack.playerHit();
+            if (blackjack.isPlayerBust()) {
+                hitButton.setEnabled(false);
+                JOptionPane.showMessageDialog(this, "Bust! You went over 21!");
+            }
             gamePanel.repaint();
         });
     }
