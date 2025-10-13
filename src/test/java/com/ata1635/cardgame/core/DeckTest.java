@@ -75,4 +75,11 @@ public class DeckTest {
 
     }
 
+    @Test
+    @DisplayName("Drawing a card reduces the deck size by 1")
+    void drawCard() {
+        deck.drawCard();
+        assertThat(deck.getDeck()).hasSize(51);
+    }
+
 }
