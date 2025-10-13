@@ -3,6 +3,7 @@ package com.ata1635.cardgame.core.service;
 import com.ata1635.cardgame.core.model.Card;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -38,13 +39,7 @@ public class Deck {
     }
 
     public void shuffleDeck() {
-        for (int i = 0; i < deck.size(); i++) {
-            int j = random.nextInt(deck.size()); //gives a random Integer 1-52
-            Card currentCard = deck.get(i);
-            Card randomCard = deck.get(j);
-            deck.set(i, randomCard); //switches position with j
-            deck.set(j, currentCard); //switches position with i
-        }
+        Collections.shuffle(deck);
     }
 
 }
