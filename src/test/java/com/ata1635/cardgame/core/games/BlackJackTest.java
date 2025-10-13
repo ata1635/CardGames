@@ -47,4 +47,11 @@ public class BlackJackTest {
         Blackjack blackjack = new Blackjack(fixedDeck);
         assertThat(blackjack.getPlayerAceCount()).isEqualTo(1);
     }
+
+    @Test
+    @DisplayName("Hidden card is dealt do dealer")
+    void hiddenCard() {
+        Blackjack blackjack = new Blackjack(fixedDeck);
+        assertThat(blackjack.getHiddenCard()).isNotNull();
+    }
 }
