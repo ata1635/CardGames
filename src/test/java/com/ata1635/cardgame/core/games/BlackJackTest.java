@@ -70,7 +70,7 @@ public class BlackJackTest {
         void correctPlayerSum() {
             Blackjack blackjack = new Blackjack(fixedDeck);
             blackjack.playerHit();
-            assertThat(blackjack.getPlayerSum()).isEqualTo(26);
+            assertThat(blackjack.getPlayerSum()).isEqualTo(16); //not 26 because adjustForAces();
         }
 
         @Test
