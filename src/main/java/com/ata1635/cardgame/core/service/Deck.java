@@ -46,7 +46,7 @@ public class Deck {
         if (deck.isEmpty()) {
             throw new IllegalStateException("Deck is empty");
         }
-        return deck.remove(deck.size() - 1);
+        return deck.removeLast();
     }
 
 }
