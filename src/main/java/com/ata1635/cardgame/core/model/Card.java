@@ -1,8 +1,8 @@
 package com.ata1635.cardgame.core.model;
 
 public class Card {
-    private String value;
-    private String type;
+    private final String value;
+    private final String type;
 
     public Card(String value, String type) {
         this.value = value;
@@ -14,13 +14,13 @@ public class Card {
     }
 
     public int getValue() {
-        if ("AJQK".contains(value)) { //Ace Jack Queen King
-            if ("A".equals(value)) {
-                return 11;
-            }
-            return 10;
+        switch (value) {
+            case "A": return 11;
+            case "J":
+            case "Q":
+            case "K": return 10;
+            default: return Integer.parseInt(value); //2-10
         }
-        return Integer.parseInt(value); //values 2-10
     }
 
     public boolean isAce() {
