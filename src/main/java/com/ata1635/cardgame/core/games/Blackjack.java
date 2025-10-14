@@ -75,6 +75,7 @@ public class Blackjack {
         dealerHand.add(card);
         dealerSum += card.getValue();
         dealerAceCount += card.isAce() ? 1 : 0;
+        adjustDealerAce();
         printHands();
         return card;
     }

@@ -57,6 +57,23 @@ public class BlackjackUI extends JFrame {
                         g.drawImage(cardImg, 20 + (CARD_WIDTH + 5) * i, 320, CARD_WIDTH, CARD_HEIGHT, null);
                     }
 
+                    if (!stayButton.isEnabled()) {
+                        String message = "";
+                        if (blackjack.getPlayerSum() > 21) {
+                            message = "Bust!";
+                        } else if (blackjack.getDealerSum() > 21) {
+                            message = "You win!";
+                        } else if (blackjack.getPlayerSum() == blackjack.getDealerSum()) {
+                            message = "Tie!";
+                        } else if (blackjack.getDealerSum() > blackjack.getPlayerSum()) {
+                            message = "You Loose!";
+                        } else if (blackjack.getDealerSum() < blackjack.getPlayerSum()) {
+                            message = "You Win!";
+                        }
+                        g.setFont(new Font("P052", Font.PLAIN, 30));
+                        g.setColor(Color.WHITE);
+                        g.drawString(message, 220, 250);
+                    }
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -78,7 +95,6 @@ public class BlackjackUI extends JFrame {
             blackjack.playerHit();
             if (blackjack.isPlayerBust()) {
                 hitButton.setEnabled(false);
-                JOptionPane.showMessageDialog(this, "Bust! You went over 21!");
             }
             gamePanel.repaint();
         });
