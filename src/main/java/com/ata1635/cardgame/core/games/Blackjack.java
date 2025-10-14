@@ -122,6 +122,5 @@ public class Blackjack {
     public int getPlayerAceCount() { return playerAceCount; }
     public int getDealerSum() { return dealerSum; }
     public int getPlayerSum() { return playerSum; }
-    public Deck getDeck() { return deck; }
 
 }

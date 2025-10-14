@@ -17,12 +17,17 @@ public class BlackjackUI extends JFrame {
 
 
     public BlackjackUI() {
-        this.setTitle("Blackjack");
+        this.setTitle("Blackjack"); //.this is the JFrame (BlackjackUI extends...)
         this.setSize(600, 600);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
+
+        JButton hitButton = new JButton("Hit");
+        JButton stayButton = new JButton("Stay");
+        hitButton.setFocusable(false);
+        stayButton.setFocusable(false);
 
         //draw hidden card
         JPanel gamePanel = new JPanel() {
@@ -33,6 +38,9 @@ public class BlackjackUI extends JFrame {
                 try {
                     //draw hidden card
                     Image hiddenCardImg = new ImageIcon(getClass().getResource("/cards/BACK.png")).getImage();
+                    if (!stayButton.isEnabled()) {
+                        hiddenCardImg = new ImageIcon(getClass().getResource(blackjack.getHiddenCard().getImagePath())).getImage();
+                    }
                     g.drawImage(hiddenCardImg, 20, 20, CARD_WIDTH, CARD_HEIGHT, null);
 
                     //draw dealer hand
@@ -62,13 +70,8 @@ public class BlackjackUI extends JFrame {
         gamePanel.setLayout(new BorderLayout());
         gamePanel.setBackground(TABLE_GREEN);
         buttonPanel.setBackground(TABLE_GREEN);
-
-        JButton hitButton = new JButton("Hit");
-        JButton stayButton = new JButton("Stay");
         buttonPanel.add(hitButton);
         buttonPanel.add(stayButton);
-        hitButton.setFocusable(false);
-        stayButton.setFocusable(false);
         this.add(buttonPanel, BorderLayout.SOUTH);
 
         hitButton.addActionListener(e -> {
