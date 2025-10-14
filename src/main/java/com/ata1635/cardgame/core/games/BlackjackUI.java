@@ -26,8 +26,11 @@ public class BlackjackUI extends JFrame {
 
         JButton hitButton = new JButton("Hit");
         JButton stayButton = new JButton("Stay");
+        JButton restartButton = new JButton("Restart");
         hitButton.setFocusable(false);
         stayButton.setFocusable(false);
+        restartButton.setFocusable(false);
+        restartButton.setEnabled(false);
 
         //draw hidden card
         JPanel gamePanel = new JPanel() {
@@ -73,6 +76,7 @@ public class BlackjackUI extends JFrame {
                         g.setFont(new Font("P052", Font.PLAIN, 30));
                         g.setColor(Color.WHITE);
                         g.drawString(message, 220, 250);
+                        restartButton.setEnabled(true);
                     }
 
                 } catch (Exception e) {
@@ -89,6 +93,7 @@ public class BlackjackUI extends JFrame {
         buttonPanel.setBackground(TABLE_GREEN);
         buttonPanel.add(hitButton);
         buttonPanel.add(stayButton);
+        buttonPanel.add(restartButton);
         this.add(buttonPanel, BorderLayout.SOUTH);
 
         hitButton.addActionListener(e -> {
@@ -104,6 +109,16 @@ public class BlackjackUI extends JFrame {
             stayButton.setEnabled(false);
             blackjack.dealerFinalHits();
             gamePanel.repaint();
+        });
+
+        restartButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                blackjack.startGame();
+                hitButton.setEnabled(true);
+                stayButton.setEnabled(true);
+                restartButton.setEnabled(false);
+                gamePanel.repaint();
+            }
         });
     }
 }

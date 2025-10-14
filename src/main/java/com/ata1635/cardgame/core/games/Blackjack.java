@@ -115,7 +115,6 @@ public class Blackjack {
         System.out.println("\n ---------- \n");
     }
 
-    //getters for testing
     public List<Card> getDealerHand() { return dealerHand; }
     public List<Card> getPlayerHand() { return playerHand; }
     public Card getHiddenCard() { return hiddenCard; }
