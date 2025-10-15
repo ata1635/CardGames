@@ -1,0 +1,12 @@
+{
+  "name": "cardgame",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "Main.js",
+  "scripts": {
+    "start": "node Main.js"
+  },
+  "description": "Blackjack Spiel in Node.js",
+  "author": "ata",
+  "license": "HHU"
+}
