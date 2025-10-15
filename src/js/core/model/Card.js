@@ -23,6 +23,7 @@ export class Card {
     }
 
     getImagePath() {
-        return `/cards/${this.toString()}.png`;
+        return `./src/js/cards/${this.rank}-${this.suit}.png`;
     }
+
 }
