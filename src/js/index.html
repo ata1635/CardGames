@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>BlackJack</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ewert&display=swap" rel="stylesheet">
+    <style>
+        h1 {
+            font-family: "Ewert", serif;
+            font-size: 52px;
+            font-weight: 400;
+            font-style: normal;
+            margin-bottom: 40px;
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 8px black;
+        }
+        body {
+            background-color: rgb(53,101,77);
+            font-family: Arial, sans-serif;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        #game {
+            position: relative;
+            width: 600px;
+            height: 600px;
+        }
+        .hand {
+            display: flex;
+            position: absolute;
+        }
+        #dealer {
+            top: 20px;
+            left: 20px;
+        }
+        #player {
+            bottom: 20px;
+            left: 20px;
+        }
+        img.card {
+            width: 110px;
+            height: 154px;
+            margin-right: 5px;
+        }
+        #message {
+            position: absolute;
+            top: 250px;
+            left: 220px;
+            font-size: 30px;
+        }
+        #buttons {
+            margin-top: 20px;
+        }
+        button {
+            margin-right: 10px;
+            font-size: 16px;
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+<h1>Blackjack</h1>
+<body>
+<div id="game">
+    <div id="dealer" class="hand"></div>
+    <div id="player" class="hand"></div>
+    <div id="message"></div>
+</div>
+<div id="buttons">
+    <button id="hit">Hit</button>
+    <button id="stay">Stay</button>
+    <button id="restart" disabled>Restart</button>
+</div>
+
+<script type="module">
+    import { Blackjack } from './core/games/Blackjack.js';
+
+    const dealerDiv = document.getElementById('dealer');
+    const playerDiv = document.getElementById('player');
+    const messageDiv = document.getElementById('message');
+    const hitButton = document.getElementById('hit');
+    const stayButton = document.getElementById('stay');
+    const restartButton = document.getElementById('restart');
+
+    let blackjack = new Blackjack();
+
+    function renderHands(showHidden = false) {
+        dealerDiv.innerHTML = '';
+        playerDiv.innerHTML = '';
+        messageDiv.textContent = '';
+
+        // --- Dealer ---
+        const hiddenCard = document.createElement('img');
+        hiddenCard.classList.add('card');
+        if (showHidden) {
+            hiddenCard.src = blackjack.getHiddenCard().getImagePath();
+        } else {
+            hiddenCard.src = './cards/BACK.png';
+        }
+        dealerDiv.appendChild(hiddenCard);
+
+        blackjack.getDealerHand().forEach(card => {
+            const img = document.createElement('img');
+            img.classList.add('card');
+            img.src = card.getImagePath();
+            dealerDiv.appendChild(img);
+        });
+
+        // --- Player ---
+        blackjack.getPlayerHand().forEach(card => {
+            const img = document.createElement('img');
+            img.classList.add('card');
+            img.src = card.getImagePath();
+            playerDiv.appendChild(img);
+        });
+    }
+
+    function checkGameEnd(showHidden = false) {
+        if (!showHidden) return false;
+
+        const playerSum = blackjack.getPlayerSum();
+        const dealerSum = blackjack.getDealerSum();
+        let message = '';
+
+        if (playerSum > 21) message = 'Bust!';
+        else if (dealerSum > 21) message = 'You Win!';
+        else if (dealerSum === playerSum) message = 'Tie!';
+        else if (dealerSum > playerSum) message = 'You Lose!';
+        else message = 'You Win!';
+
+        messageDiv.textContent = message;
+        restartButton.disabled = false;
+        return true;
+    }
+
+    function startNewGame() {
+        blackjack.startGame();
+        hitButton.disabled = false;
+        stayButton.disabled = false;
+        restartButton.disabled = true;
+        renderHands(false);
+    }
+
+    // --- Button Events ---
+    hitButton.addEventListener('click', () => {
+        blackjack.playerHit();
+        renderHands(false);
+        if (blackjack.isPlayerBust()) {
+            hitButton.disabled = true;
+            stayButton.disabled = true;
+            renderHands(true);
+            checkGameEnd(true);
+        }
+    });
+
+    stayButton.addEventListener('click', () => {
+        hitButton.disabled = true;
+        stayButton.disabled = true;
+        blackjack.dealerFinalHits();
+        renderHands(true);
+        checkGameEnd(true);
+    });
+
+    restartButton.addEventListener('click', () => {
+        startNewGame();
+    });
+
+    // --- Initial Start ---
+    renderHands(false);
+</script>
+</body>
+</html>
