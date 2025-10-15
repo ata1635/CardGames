@@ -3,9 +3,6 @@ plugins {
     id 'application'
 }
 
-group = 'main'
-version = '1.0-SNAPSHOT'
-
 application {
     mainClassName = 'app.Main'
 }
@@ -18,6 +15,9 @@ dependencies {
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
     implementation 'org.assertj:assertj-core:4.0.0-M1'
+    implementation 'org.teavm:teavm-cli:0.10.0'
+    implementation 'org.teavm:teavm-classlib:0.10.0'
+    implementation 'org.teavm:teavm-core:0.10.0'
 }
 
 test {
