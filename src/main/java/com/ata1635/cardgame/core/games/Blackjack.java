@@ -45,6 +45,7 @@ public class Blackjack {
         dealerSum += card.getValue();
         dealerAceCount += card.isAce() ? 1 : 0;
         dealerHand.add(card);
+        adjustDealerAce();
 
         //player
         playerHand = new ArrayList<Card>();
@@ -57,6 +58,7 @@ public class Blackjack {
             playerAceCount += card.isAce() ? 1 : 0;
             playerHand.add(card);
         }
+        adjustPlayerAce();
         printHands();
     }
 
