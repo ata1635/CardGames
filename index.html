@@ -174,17 +174,10 @@
     // --- Initial Start ---
     renderHands(false);
 
-    // --- n8n site visit pinger ---
-    fetch("https://ata1635.app.n8n.cloud/webhook/github-visits", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      timestamp: new Date().toISOString(),
-      page: window.location.href,
-      referrer: document.referrer || "direkt",
-      agent: navigator.userAgent
-    })
-  });
 </script>
+
+    <!--- n8n tracking --->
+    <img src="https://ata1635.app.n8n.cloud/webhook/github-visits" style="display:none" alt="" />
+
 </body>
 </html>
