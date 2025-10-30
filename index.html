@@ -175,7 +175,7 @@
     renderHands(false);
 
     // --- n8n site visit pinger ---
-    fetch("https://ata1635.app.n8n.cloud", {
+    fetch("https://ata1635.app.n8n.cloud/webhook/github-visits", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
