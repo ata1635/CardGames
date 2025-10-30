@@ -173,6 +173,18 @@
 
     // --- Initial Start ---
     renderHands(false);
+
+    // --- n8n site visit pinger ---
+    fetch("https://ata1635.app.n8n.cloud", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      timestamp: new Date().toISOString(),
+      page: window.location.href,
+      referrer: document.referrer || "direkt",
+      agent: navigator.userAgent
+    })
+  });
 </script>
 </body>
 </html>
